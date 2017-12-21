@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "store/style.css" %}">
+    <title>Store Information</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="topbar">
+            <h3>Store Information for {{store.store_name}}</h3>   
+            <p><a href="/store/">Store Dashboard</a> | <a href="/people/"> Main Dashboard</a> | <a href="/store/logout">Logout</a></p>
+        </div>
+        <br>
+        <div class="vitals">
+            <p>Store Name: {{store.store_name}}</p>
+            <p>Store Affiliation: {{store.agency.agency_name}}</p>
+            <p>Store Number: {{store.store_number}}</p>
+            <p>Phone #: {{store.phone}}</p>
+            <p>Email: {{store.email}}</p>
+            <p>Store Address:</p>
+            <p>{{store.address_1}}</p>
+            <p>{{store.address_2}}</p>
+            <p>{{store.city}} {{store.state}}, {{store.zip_code}}</p>
+        </div>
+        <br>
+        <div class="stores">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Store</th>
+                        <th>Store Number</th>
+                        <th>Store Phone</th>
+                        <th>Store Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{store.store_name}}</td>
+                        <td>{{store.store_number}}</td>
+                        <td>{{store.phone}}</td>
+                        <td>{{store.email}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

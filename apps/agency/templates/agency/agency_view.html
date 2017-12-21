@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "agency/style.css" %}">
+    <title>agency Information</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="topbar">
+            <h3>Agency Information for {{agency.agency_name}}</h3>   
+            <p><a href="/agency/">Agency Dashboard</a> | <a href="/people/"> Main Dashboard</a> | <a href="/agency/logout">Logout</a></p>
+        </div>
+        <br>
+        <div class="vitals">
+            <p>Agency Name: {{agency.agency_name}}</p>
+            <p>Phone #: {{agency.phone}}</p>
+            <p>Email: {{agency.email}}</p>
+        </div>
+        <br>
+        <div class="address">
+            <p>Address:</p>
+            <p>{{agency.address_1}}</p>
+            <p>{{agency.address_2}}</p>
+            <p>{{agency.city}} {{agency.state}}, {{agency.zip_code}}</p>
+        </div>
+    </div>
+</body>
+</html>

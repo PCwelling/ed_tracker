@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "people/style.css" %}">
+    <title>Add a new student</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="topbar">
+            <h3>Add a student to the database.</h3>   
+            <p><a href="/people/student_dashboard">Student Dashboard</a> | <a href="/people/"> Main Dashboard</a> | <a href="/people/logout">Logout</a></p>
+        </div>
+        <div class="student_create">
+            <h2>Add a new student to the database.</h2>
+            <div class = "errors">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            <form action="/people/student_create" method="post">
+                {% csrf_token%}
+                {{studentForm.as_p}}
+                <input type="submit" value="Add Student">
+            </form>
+        </div>
+    </div>  
+</body>
+</html>

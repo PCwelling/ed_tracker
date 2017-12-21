@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "course/style.css" %}">
+    <title>Add a new Course Type</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class = "topbar">
+            <h2>Course Type Dashboard</h2>
+            <p> <a href="/course/">Course Dashboard</a> | <a href="/people/"> Main Dashboard</a> | <a href="/course/logout">Logout</a></p>            
+        </div>
+        <div class="course_type_create">
+            <h2>Add a new course type to the database.</h2>
+            <div class = "errors">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            <form action="/course/course_type_create" method="post">
+                {% csrf_token%}
+                {{course_typeForm.as_p}}
+                <input type="submit" value="Add Course Type">
+            </form>
+        </div>
+        <br>
+        <div class="course_type_list">
+            <h2>List of Course Types in the database</h2>
+            {% for course_type in course_types %}
+            <p> <a href="/course/{{course_type.id}}/course_type_view">{{course_type.course_title}}</a></p>
+            {% endfor %}
+        </div>        
+    </div>  
+</body>
+</html>

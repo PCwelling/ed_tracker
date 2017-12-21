@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "people/style.css" %}">
+    <title>Instructor Information</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="topbar">
+            <h3>Instructor Information for {{instructor.first_name}} {{instructor.last_name}}</h3>   
+            <p><a href="/instructor/">Instructor Dashboard</a> | <a href="/people/"> Main Dashboard</a> | <a href="/people/logout">Logout</a></p>
+        </div>
+        <br>
+        <div class="vitals">
+            <p>Full Name: {{instructor.first_name}} {{student.middle_initial}} {{instructor.last_name}}</p>
+            <p>Instructor Number: {{instructor.instructor_number}}</p>
+            <p>Date of Birth: {{instructor.birth_date}}</p>
+            <p>Sex: {{instructor.sex}}</p>
+            <p>Phone #: {{instructor.phone}}</p>
+            <p>Email: {{instructor.email}}</p>
+        </div>
+        <br>
+        <div class="address">
+            <p>Address:</p>
+            <p>{{instructor.address_1}}</p>
+            <p>{{instructor.address_2}}</p>
+            <p>{{instructor.city}} {{instructor.state}}, {{instructor.zip_code}}</p>
+
+        </div>
+        <br>
+        <div class="courses">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Course</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for course in course %}
+                    <tr>
+                        <td>{{course.course_type}}</td>
+                        <td>{{course.start_date}}</td>
+                        <td>{{course.end_date}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

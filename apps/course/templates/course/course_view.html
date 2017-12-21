@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "course/style.css" %}">
+    <title>Course Type Information</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="topbar">
+            <h3>Course Information for {{course.course_type.course_title}}</h3>   
+            <p><a href="/course/">Course Dashboard</a> | <a href="/people/"> Main Dashboard</a> | <a href="/people/logout">Logout</a></p>
+        </div>
+        <br>
+        <div class="vitals">
+            <p>Course Title: {{course.course_type.course_title}}</p>
+            <br>
+            <p>Course Description: {{course.course_type.desc}}</p>
+            <br>
+            <p>Course Start Date: {{course.start_date}}</p>
+            <br>
+            <p>Course End Date: {{course.end_date}}</p>
+            <br>
+            <p>Course Agency: {{course.agency}}</p>
+            <br>
+            <p>Course Instructor:</p>
+            {% for instructor in instructors %}
+            <p>{{instructor.first_name}} {{instructor.last_name}}</p>
+            {% endfor %}
+        </div>
+        <br>
+        <div class="inclass">
+            <h3>Students Enrolled in the course:</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Student Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                    <tr>
+                        <td>{{student.first_name}} {{student.last_name}}</td>
+                        <td>{{student.email}}</td>
+                        <td>
+                            <form action="/course/remove_from_course" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="course_id" value="{{course.id}}">
+                                <input type="hidden" name="student_id" value="{{student.id}}">
+                                <input type="submit" value="Remove from Course">
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>    
+        <br>   
+        <div class="all">
+            <h3>List of all students</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Student Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in allstudents %}
+                    <tr>
+                        <td>{{student.first_name}} {{student.last_name}}</td>
+                        <td>{{student.email}}</td>
+                        <td>
+                            <form action="/course/add_to_course" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="course_id" value="{{course.id}}">
+                                <input type="hidden" name="student_id" value="{{student.id}}">
+                                <input type="submit" value="Add to Course">
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>        
+        </div>
+    </div>
+</body>
+</html>

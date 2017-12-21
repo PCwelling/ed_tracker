@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "course/style.css" %}">
+    <title>Course Type Information</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="topbar">
+            <h3>Course Type Information for {{course_type.course_title}}</h3>   
+            <p><a href="/course/">Course Dashboard</a> | <a href="/people/"> Main Dashboard</a> | <a href="/people/logout">Logout</a></p>
+        </div>
+        <br>
+        <div class="vitals">
+            <p>Course Title: {{course_type.course_title}}</p>
+            <p>Course Description: {{course_type.desc}}</p>
+        </div>
+    </div>
+</body>
+</html>

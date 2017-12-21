@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "agency/style.css" %}">
+    <title>Agency Dashboard</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="topbar">
+            <h3>Welcome to the agency Module, {{user.first_name}}.</h3>   
+            <p><a href="/people/"> Main Dashboard</a> | <a href="/agency/logout">Logout</a></p>
+        </div>
+        <p>From here you can view the list of all agency, add a new agency, or view information about the agency by clicking on their name.</p>
+        <br>
+        <div class="p_dash_button">
+            <button><a href="/agency/agency_add">Add a new agency</a></button>
+        </div>   
+        <br>
+        <br>
+        <table>
+            <thead>
+                <tr>
+                    <th>Agency Name</th>
+                </tr>
+            </thead>
+            {% for agency in agencys %}
+            <tbody>
+                <tr>
+                    <td><a href="/agency/{{agency.id}}/agency_view">{{agency.agency_name}}</a></td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

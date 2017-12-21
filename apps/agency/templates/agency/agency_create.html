@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "agency/style.css" %}">
+    <title>Add a new Instructor</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="topbar">
+            <h3>Add a new Agency</h3>   
+            <p><a href="/agency/">Agency Dashboard</a> | <a href="/people/"> Main Dashboard</a> | <a href="/agency/logout">Logout</a></p>
+        </div>
+        <div class="agency_create">
+            <h2>Add a new agency to the database.</h2>
+            <div class = "errors">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            <form action="/agency/agency_create" method="post">
+                {% csrf_token%}
+                {{agencyForm.as_p}}
+                <input type="submit" value="Add agency">
+            </form>
+        </div>
+    </div>  
+</body>
+</html>

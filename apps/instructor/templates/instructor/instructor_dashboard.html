@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "people/style.css" %}">
+    <title>Instructor Dashboard</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="topbar">
+            <h3>Welcome to the Instructor Module, {{user.first_name}}.</h3>   
+            <p><a href="/people/"> Main Dashboard</a> | <a href="/instructor/logout">Logout</a></p>
+        </div>
+        <p>From here you can view the list of all students, add a new student, or view information about the student by clicking on their name.</p>
+        <br>
+        <div class="p_dash_button">
+        <button><a href="/instructor/instructor_add">Add a new instructor</a></button>     
+        <br>
+        </div>
+        <br>
+        <table>
+            <thead>
+                <tr>
+                    <th>Instructor Name</th>
+                    <th>Instructor Number</th>
+                </tr>
+            </thead>
+            {% for instructor in instructors %}
+            <tbody>
+                <tr>
+                    <td><a href="/instructor/{{instructor.id}}/instructor_view">{{instructor.first_name}}{{instructor.last_name}}</a></td>
+                    <td>{{instructor.instructor_number}}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

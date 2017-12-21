@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "course/style.css" %}">
+    <title>Add a new Course</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="topbar">
+            <h3> Add a New Course</h3>   
+            <p><a href="/course/">Course Dashboard</a> | <a href="/people/"> Main Dashboard</a> | <a href="/agency/logout">Logout</a></p>
+        </div>
+        <div class="course_create">
+            <h2>Add a new course to the database.</h2>
+            <div class = "errors">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            <form action="/course/course_create" method="post">
+                {% csrf_token%}
+                {{courseForm.as_p}}
+                <input type="submit" value="Add Course">
+            </form>
+        </div>
+        <div class="course_list">
+            <h2>List of Courses in the database</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Course Type</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Store</th>
+                        <th>Agency</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for course in courses %}
+                    <tr>
+                        <td> <a href="/course/{{course.id}}/course_view">{{course.course_type.course_title}}</a></td>
+                        <td>{{course.start_date}}</td>
+                        <td>{{course.end_date}}</td>
+                        <td>{{course.store}}</td>
+                        <td>{{course.agency}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div> 
+    </div>  
+</body>
+</html>

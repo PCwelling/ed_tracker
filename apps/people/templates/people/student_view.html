@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "people/style.css" %}">
+    <title>Student Information</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="topbar">
+            <h3>Student Information for {{student.first_name}} {{student.last_name}}</h3>   
+            <p><a href="/people/student_dashboard">Student Dashboard</a> | <a href="/people/"> Main Dashboard</a> | <a href="/people/logout">Logout</a></p>
+        </div>
+        <br>
+        <div class="vitals">
+            <p>Full Name: {{student.first_name}} {{student.middle_initial}} {{student.last_name}}</p>
+            <p>Date of Birth: {{student.birth_date}}</p>
+            <p>Sex: {{student.sex}}</p>
+            <p>Phone #: {{student.phone}}</p>
+            <p>Email: {{student.email}}</p>
+        </div>
+        <br>
+        <div class="address">
+            <p>Address:</p>
+            <p>{{student.address_1}}</p>
+            <p>{{student.address_2}}</p>
+            <p>{{student.city}} {{student.state}}, {{student.zip_code}}</p>
+
+        </div>
+        <br>
+        <div class="courses">
+            <h3>Courses currently enrolled in:</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Course</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for course in courses %}
+                    <tr>
+                        <td>{{course.course_type.course_title}}</td>
+                        <td>{{course.start_date}}</td>
+                        <td>{{course.end_date}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <div class="certifications">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Certification</th>
+                        <th>Certification Date</th>
+                        <th>Certification Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{certification.course_type}}</td>
+                        <td>{{certification.date}}</td>
+                        <td>{{certification.number}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

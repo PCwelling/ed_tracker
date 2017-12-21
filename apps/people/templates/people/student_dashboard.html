@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "people/style.css" %}">
+    <title>Student Dashboard</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="topbar">
+            <h3>Welcome to the Student Module, {{user.first_name}}.</h3>   
+            <p><a href="/people/"> Main Dashboard</a> | <a href="/people/logout">Logout</a></p>
+        </div>
+        <p>From here you can view the list of all students, add a new student, or view information about the student by clicking on their name.</p>
+        <br>
+        <div class="p_dash_button">
+            <button><a href="/people/student_add">Add a new student</a></button> 
+        </div>    
+        <br>
+        <br>
+        <table>
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Email Address</th>
+                    <th>Phone Number</th>
+                </tr>
+            </thead>
+            {% for student in students %}
+            <tbody>
+                <tr>
+                    <td><a href="/people/{{student.id}}/student_view">{{student.first_name}} {{student.middle_initial}} {{student.last_name}}</a></td>
+                    <td>{{student.email}}</td>
+                    <td>{{student.phone}}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>   
+</body>
+</html>

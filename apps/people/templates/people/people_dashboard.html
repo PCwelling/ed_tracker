@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "people/style.css" %}">
+    <title>People Dashboard</title>
+
+</head>
+<body>
+    <div class="wrapper">
+        <div class = "topbar">
+            <h2>Epicurean Diving Tracker Main Dashboard</h2>
+            <p><a href="/people/logout">Logout</a></p>            
+        </div>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <h3>Welcome {{user.first_name}}</h3>
+        <p>From this page you can access different modules.</p>
+        <div class="p_dash_button">
+            <button><a href="/people/student_dashboard">Student Module</a></button>
+            <button><a href="/instructor/">Instructor Module</a> </button>
+            <button><a href="/course/">Course Module</a></button>
+            <button><a href="/agency/">Agency Module</a></button>
+            <button><a href="/store/">Store Module</a></button>
+        </div>
+    </div>
+</body>
+</html>

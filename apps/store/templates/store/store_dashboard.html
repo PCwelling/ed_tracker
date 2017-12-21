@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "store/style.css" %}">
+    <title>Store Dashboard</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="topbar">
+            <h3>Welcome to the Store Module, {{user.first_name}}.</h3>   
+            <p><a href="/people/"> Main Dashboard</a> | <a href="/store/logout">Logout</a></p>
+        </div>
+        <p>From here you can view the list of all stores, add a new store, or view information about the store by clicking on their name.</p>
+        <br>
+        <div class="p_dash_button">
+            <button><a href="/store/store_add">Add a new store</a></button>
+        </div>    
+        <br>
+        <br>
+        <table>
+            <thead>
+                <tr>
+                    <th>Store Name</th>
+                </tr>
+            </thead>
+            {% for store in stores %}
+            <tbody>
+                <tr>
+                    <td><a href="/store/{{store.id}}/store_view">{{store.store_name}}</a></td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>  
+</body>
+</html>
